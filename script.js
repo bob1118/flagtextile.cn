@@ -23,8 +23,8 @@ const languages = {
         'about-title': '关于我们',
         'about-desc': '浙江弗蘭戈進出口有限公司致力于成为纺织行业的领先企业。我们秉承创新、品质、服务的理念，为客户提供最优质的产品和服务。我们的愿景是成为全球纺织市场的佼佼者，为客户创造价值，为社会贡献力量。',
         'contact-title': '联系我们',
-        'contact-email': '邮箱：564655068@qq.com',
-        'contact-phone': '电话：+86 19817808333',
+        'contact-email': '邮箱：ivr@foxmail.com',
+        'contact-phone': '电话：+86 19285759256',
         'contact-address': '地址：UNIT 18, 8/F, PETER LEUNG INDUSTRIAL BUILDING 103 WAI YIP STREET KWUN TONG KL'
     },
     en: {
@@ -50,8 +50,8 @@ const languages = {
         'about-title': 'About Us',
         'about-desc': 'ZHEJIANG FLAG IMPORT & EXPORT CO., LIMITED is committed to becoming a leading enterprise in the textile industry. We adhere to the philosophy of innovation, quality, and service, providing customers with the highest quality products and services. Our vision is to become a leader in the global textile market, creating value for customers and contributing to society.',
         'contact-title': 'Contact Us',
-        'contact-email': 'Email: 564655068@qq.com',
-        'contact-phone': 'Phone: +86 19817808333',
+        'contact-email': 'Email: ivr@foxmail.com',
+        'contact-phone': 'Phone: +86 19285759256',
         'contact-address': 'Address: UNIT 18, 8/F, PETER LEUNG INDUSTRIAL BUILDING 103 WAI YIP STREET KWUN TONG KL'
     }
 };
