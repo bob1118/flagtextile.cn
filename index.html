@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浙江弗蘭戈進出口有限公司</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="浙江弗蘭戈進出口有限公司 LOGO">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" data-lang="nav-home">主页</a></li>
+                    <li><a href="#products" data-lang="nav-products">产品</a></li>
+                    <li><a href="#about" data-lang="nav-about">关于</a></li>
+                    <li><a href="#contact" data-lang="nav-contact">联系</a></li>
+                </ul>
+            </nav>
+            <div class="lang-switch">
+                <button id="lang-zh" class="active">中文</button>
+                <button id="lang-en">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 data-lang="home-title">浙江弗蘭戈進出口有限公司</h1>
+                <p data-lang="home-desc">专注于外贸纺织行业，提供高品质的服装面料、家纺面料和户外面料。我们的产品以优质材料和先进工艺著称，致力于满足全球客户的需求。</p>
+            </div>
+        </section>
+
+        <section id="products">
+            <div class="container">
+                <h2 data-lang="products-title">我们的产品</h2>
+                <div class="product-category">
+                    <h3 data-lang="product-clothing">服装面料</h3>
+                    <div class="product-grid">
+                        <div class="product-item" data-img="images/11.jpg" data-name="服装面料1">
+                            <img src="images/11.jpg" alt="服装面料1">
+                            <p data-lang="product-clothing-1">服装面料1</p>
+                        </div>
+                        <div class="product-item" data-img="images/12.jpg" data-name="服装面料2">
+                            <img src="images/12.jpg" alt="服装面料2">
+                            <p data-lang="product-clothing-2">服装面料2</p>
+                        </div>
+                        <div class="product-item" data-img="images/13.jpg" data-name="服装面料3">
+                            <img src="images/13.jpg" alt="服装面料3">
+                            <p data-lang="product-clothing-3">服装面料3</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <h3 data-lang="product-home">家纺面料</h3>
+                    <div class="product-grid">
+                        <div class="product-item" data-img="images/21.jpg" data-name="家纺面料1">
+                            <img src="images/21.jpg" alt="家纺面料1">
+                            <p data-lang="product-home-1">家纺面料1</p>
+                        </div>
+                        <div class="product-item" data-img="images/22.jpg" data-name="家纺面料2">
+                            <img src="images/22.jpg" alt="家纺面料2">
+                            <p data-lang="product-home-2">家纺面料2</p>
+                        </div>
+                        <div class="product-item" data-img="images/23.jpg" data-name="家纺面料3">
+                            <img src="images/23.jpg" alt="家纺面料3">
+                            <p data-lang="product-home-3">家纺面料3</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-category">
+                    <h3 data-lang="product-outdoor">户外面料</h3>
+                    <div class="product-grid">
+                        <div class="product-item" data-img="images/31.jpg" data-name="户外面料1">
+                            <img src="images/31.jpg" alt="户外面料1">
+                            <p data-lang="product-outdoor-1">户外面料1</p>
+                        </div>
+                        <div class="product-item" data-img="images/32.jpg" data-name="户外面料2">
+                            <img src="images/32.jpg" alt="户外面料2">
+                            <p data-lang="product-outdoor-2">户外面料2</p>
+                        </div>
+                        <div class="product-item" data-img="images/33.jpg" data-name="户外面料3">
+                            <img src="images/33.jpg" alt="户外面料3">
+                            <p data-lang="product-outdoor-3">户外面料3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 data-lang="about-title">关于我们</h2>
+                <p data-lang="about-desc">浙江弗蘭戈進出口有限公司致力于成为纺织行业的领先企业。我们秉承创新、品质、服务的理念，为客户提供最优质的产品和服务。我们的愿景是成为全球纺织市场的佼佼者，为客户创造价值，为社会贡献力量。</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 data-lang="contact-title">联系我们</h2>
+                <div class="contact-info">
+                    <p data-lang="contact-email"><strong>邮箱：</strong>info@sxyctextile.com</p>
+                    <p data-lang="contact-phone"><strong>电话：</strong>+86 123 4567 8900</p>
+                    <p data-lang="contact-address"><strong>地址：</strong>浙江省绍兴市越城区纺织路123号</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2021-<span id="current-year">2026</span> ZHEJIANG FLAG IMPORT & EXPORT CO., LIMITED. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
