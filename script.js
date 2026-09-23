@@ -20,6 +20,9 @@ const languages = {
         'product-acetate-3': '醋酸感丝绒冰花数码印花压花石纹',
         'product-copysilk-regular': '仿真丝丝绒压花·常规',
         'product-copysilk-thick': '仿真丝丝绒压花·加厚',
+        'product-embroidery-1': '彩色亮片绣花',
+        'product-mesh-embroidery-1': '网纱花叶绣花',
+        'product-mesh-embroidery-bead-tube-1': '网纱亮片管珠绣',
         'product-footwear': '鞋子',
         'product-footwear-1': '帆布鞋',
         'product-footwear-2': '休闲鞋',
@@ -67,6 +70,10 @@ const languages = {
         'product-acetate-3-desc': '酒红腰果花烫钻压花，复古华贵加厚款。',
         'product-copysilk-regular-desc': '暗红底灰白叶蔓压花，常规款。',
         'product-copysilk-thick-desc': '铁锈红灰枝纹压花，加厚款。',
+        'product-embroidery-1-desc': '腰果花配叶蔓亮片绣，色彩丰富。',
+        'product-mesh-embroidery-1-desc': '网纱底花叶刺绣，点缀珠片。',
+        'product-mesh-embroidery-bead-tube-1-desc': '网纱底亮片花卉与波纹管珠纹，闪耀华丽。',
+        'count-2': '2 图',
         'count-4': '4 图',
         'product-footwear-1-desc': '黑色一脚蹬帆布鞋，简约百搭。',
         'product-footwear-2-desc': '米色针织一脚蹬，配可拆洗鞋垫。',
@@ -105,6 +112,9 @@ const languages = {
         'product-acetate-3': 'Acetate-like velvet with brim & digital print & emboss & stone',
         'product-copysilk-regular': 'Copy silk velvet & emboss (Regular)',
         'product-copysilk-thick': 'Copy silk velvet & emboss (Thick)',
+        'product-embroidery-1': 'Sequin Embroidery',
+        'product-mesh-embroidery-1': 'Mesh Floral & Leaf Embroidery',
+        'product-mesh-embroidery-bead-tube-1': 'Mesh Sequin & Bead-Tube Embroidery',
         'product-footwear': 'Footwear',
         'product-footwear-1': 'Canvas Shoes',
         'product-footwear-2': 'Casual Shoes',
@@ -152,9 +162,13 @@ const languages = {
         'product-acetate-3-desc': 'Wine-red paisley with stones and emboss — vintage luxury, heavy weight.',
         'product-copysilk-regular-desc': 'Dark red with gray-white leaf emboss — regular weight.',
         'product-copysilk-thick-desc': 'Rust with gray branch emboss — heavy weight.',
+        'product-embroidery-1-desc': 'Paisley and leaf-vine sequin embroidery in rich colors.',
+        'product-mesh-embroidery-1-desc': 'Floral and leaf embroidery on mesh, accented with beads and sequins.',
+        'product-mesh-embroidery-bead-tube-1-desc': 'Sequin florals and wavy bead-tube patterns on mesh — brilliant and glamorous.',
+        'count-2': '2 Photos',
         'count-4': '4 Photos',
         'product-footwear-1-desc': 'Black canvas slip-ons — simple and versatile.',
-        'product-footwear-2-desc': 'Beige knit slip-ons with removable insoles.',
+        'product-footwear-2-desc': 'Beige knit slip-ons with removable, washable insoles.',
         'product-footwear-3-desc': 'Knit runners in black, blue and orange — lightweight and breathable.',
         'count-3': '3 Photos',
         'product-plush-toys-1-desc': 'Cream teddy bear — soft and cuddly.',
@@ -200,6 +214,11 @@ function switchLanguage(lang) {
             img.alt = nameEl.textContent;
         }
     });
+
+    // Re-translate the open modal gallery, if any
+    if (modalCard && modal.style.display === 'flex') {
+        refreshModalText();
+    }
 }
 
 // Mobile nav toggle
@@ -210,22 +229,74 @@ navToggle.addEventListener('click', () => {
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 });
 
-// Hero background slideshow
+// Hero background slideshow (cross-fading stacked slides)
 const heroSection = document.getElementById('home');
-const backgrounds = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg'];
-let currentBg = 0;
+const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+const heroImages = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg'];
+let heroIndex = 0;
+let heroTimer = null;
 
-function changeBackground() {
-    currentBg = (currentBg + 1) % backgrounds.length;
-    heroSection.style.backgroundImage = `url(${backgrounds[currentBg]})`;
+// First frame is painted unconditionally so the hero is never blank.
+// Stale cached HTML without .hero-slide layers falls back to #home.
+if (heroSlides.length) {
+    heroSlides.forEach((slide, i) => {
+        slide.style.backgroundImage = `url(${heroImages[i % heroImages.length]})`;
+        slide.classList.toggle('is-active', i === 0);
+    });
+} else {
+    heroSection.style.backgroundImage = `url(${heroImages[0]})`;
 }
 
-setInterval(changeBackground, 3000); // Change every 3 seconds
-heroSection.style.backgroundImage = `url(${backgrounds[0]})`; // Initial background
+function showHero(i) {
+    heroIndex = i;
+    if (heroSlides.length) {
+        heroSlides.forEach((slide, k) => slide.classList.toggle('is-active', k === heroIndex));
+    } else {
+        heroSection.style.backgroundImage = `url(${heroImages[heroIndex]})`;
+    }
+}
+
+function stopHero() {
+    if (heroTimer) {
+        clearInterval(heroTimer);
+        heroTimer = null;
+    }
+}
+
+function startHero() {
+    stopHero();
+    heroTimer = setInterval(() => {
+        showHero((heroIndex + 1) % heroImages.length);
+    }, 3000);
+}
+
+// No auto-advance when the user prefers reduced motion; pause in background tabs
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduceMotion) {
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopHero();
+        } else {
+            startHero();
+        }
+    });
+    startHero();
+}
 
 // Category tabs
-document.querySelectorAll('[data-cat-tab]').forEach(tab => {
+const catTabs = Array.from(document.querySelectorAll('[data-cat-tab]'));
+catTabs.forEach(tab => {
     tab.addEventListener('click', () => switchTab(tab.getAttribute('data-cat-tab')));
+});
+
+// Arrow-key navigation across tabs (WAI tablist pattern)
+document.querySelector('.cat-tabs').addEventListener('keydown', event => {
+    if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+    event.preventDefault();
+    const current = catTabs.indexOf(document.activeElement);
+    const next = (current + (event.key === 'ArrowRight' ? 1 : -1) + catTabs.length) % catTabs.length;
+    switchTab(catTabs[next].getAttribute('data-cat-tab'));
+    catTabs[next].focus();
 });
 
 function switchTab(name) {
@@ -252,6 +323,22 @@ const prevBtn = document.getElementById('modal-prev');
 const nextBtn = document.getElementById('modal-next');
 let galleryImages = [];
 let galleryIndex = 0;
+let modalCard = null;
+
+function refreshModalText() {
+    if (!modalCard) return;
+    const nameEl = modalCard.querySelector('h3');
+    modalImg.alt = nameEl.textContent;
+    captionText.textContent = nameEl.textContent;
+    modalDesc.textContent = modalCard.querySelector('.card-desc').textContent;
+    const chip = modalCard.querySelector('.spec-chip');
+    if (chip) {
+        modalSpec.textContent = chip.textContent;
+        modalSpec.style.display = '';
+    } else {
+        modalSpec.style.display = 'none';
+    }
+}
 
 function showGalleryImage() {
     modalImg.src = galleryImages[galleryIndex];
@@ -272,18 +359,10 @@ document.querySelectorAll('.product-item[data-images]').forEach(item => {
         if (!galleryImages.length) return;
         galleryIndex = 0;
         showGalleryImage();
-        const nameEl = this.querySelector('h3');
-        modalImg.alt = nameEl.textContent;
-        captionText.textContent = nameEl.textContent;
-        modalDesc.textContent = this.querySelector('.card-desc').textContent;
-        const chip = this.querySelector('.spec-chip');
-        if (chip) {
-            modalSpec.textContent = chip.textContent;
-            modalSpec.style.display = '';
-        } else {
-            modalSpec.style.display = 'none';
-        }
+        modalCard = this;
+        refreshModalText();
         modal.style.display = 'flex';
+        closeBtn.focus();
     });
 });
 
@@ -299,17 +378,23 @@ nextBtn.onclick = function() {
 
 closeBtn.onclick = function() {
     modal.style.display = 'none';
+    modalCard = null;
 }
 
 window.onclick = function(event) {
     if (event.target === modal) {
         modal.style.display = 'none';
+        modalCard = null;
     }
 }
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         modal.style.display = 'none';
+        modalCard = null;
+    } else if ((event.key === 'ArrowRight' || event.key === 'ArrowLeft') && modal.style.display === 'flex' && galleryImages.length > 1) {
+        galleryIndex = (galleryIndex + (event.key === 'ArrowRight' ? 1 : -1) + galleryImages.length) % galleryImages.length;
+        showGalleryImage();
     }
 });
 

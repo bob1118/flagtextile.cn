@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>浙江弗蘭戈進出口有限公司</title>
-    <link rel="stylesheet" href="styles.css?v=10">
+    <meta name="description" content="浙江弗蘭戈進出口有限公司——高品质面料、配饰、鞋子和毛绒玩具，支持打样与大货定制，供应全球客户。">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="浙江弗蘭戈進出口有限公司">
+    <meta property="og:description" content="高品质面料、配饰、鞋子和毛绒玩具，支持打样与大货定制，供应全球客户。">
+    <meta property="og:image" content="https://flagtextile.cn/images/1.jpg">
+    <link rel="stylesheet" href="styles.css?v=11">
     <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="images/1.jpg">
+    <link rel="preload" as="image" href="images/2.jpg">
+    <link rel="preload" as="image" href="images/3.jpg">
 </head>
 <body>
     <header>
@@ -39,6 +46,9 @@
 
     <main>
         <section id="home" class="hero">
+            <div class="hero-slide is-active" aria-hidden="true"></div>
+            <div class="hero-slide" aria-hidden="true"></div>
+            <div class="hero-slide" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1 data-lang-group="home-title"><span data-lang="home-title-pre">浙江</span><span class="title-flag" data-lang="home-title-flag">弗蘭戈</span><span data-lang="home-title-post">進出口有限公司</span></h1>
                 <p data-lang="home-desc">专注于外贸行业，提供高品质的面料、配饰、鞋子和毛绒玩具。我们的产品以优质材料和先进工艺著称，致力于满足全球客户的需求。</p>
@@ -77,6 +87,36 @@
                             <div class="card-body">
                                 <h3 data-lang="product-fabrics-1">2026流行</h3>
                                 <p class="card-desc" data-lang="product-fabrics-1-desc">优质面料，规格可按需求定制。</p>
+                            </div>
+                        </article>
+                        <article class="product-item product-card" data-images='["images/fabrics/embroidery/01.jpg", "images/fabrics/embroidery/02.jpg"]'>
+                            <div class="thumb">
+                                <img src="images/fabrics/embroidery/01.jpg" alt="彩色亮片绣花" loading="lazy">
+                                <span class="count-badge" data-lang="count-2">2 图</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 data-lang="product-embroidery-1">彩色亮片绣花</h3>
+                                <p class="card-desc" data-lang="product-embroidery-1-desc">腰果花配叶蔓亮片绣，色彩丰富。</p>
+                            </div>
+                        </article>
+                        <article class="product-item product-card" data-images='["images/fabrics/mesh-embroidery/01.jpg", "images/fabrics/mesh-embroidery/02.jpg"]'>
+                            <div class="thumb">
+                                <img src="images/fabrics/mesh-embroidery/01.jpg" alt="网纱花叶绣花" loading="lazy">
+                                <span class="count-badge" data-lang="count-2">2 图</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 data-lang="product-mesh-embroidery-1">网纱花叶绣花</h3>
+                                <p class="card-desc" data-lang="product-mesh-embroidery-1-desc">网纱底花叶刺绣，点缀珠片。</p>
+                            </div>
+                        </article>
+                        <article class="product-item product-card" data-images='["images/fabrics/mesh-embroidery-bead-tube/01.jpg", "images/fabrics/mesh-embroidery-bead-tube/02.jpg", "images/fabrics/mesh-embroidery-bead-tube/03.jpg"]'>
+                            <div class="thumb">
+                                <img src="images/fabrics/mesh-embroidery-bead-tube/01.jpg" alt="网纱亮片管珠绣" loading="lazy">
+                                <span class="count-badge" data-lang="count-3">3 图</span>
+                            </div>
+                            <div class="card-body">
+                                <h3 data-lang="product-mesh-embroidery-bead-tube-1">网纱亮片管珠绣</h3>
+                                <p class="card-desc" data-lang="product-mesh-embroidery-bead-tube-1-desc">网纱底亮片花卉与波纹管珠纹，闪耀华丽。</p>
                             </div>
                         </article>
                         <article class="product-item product-card" data-images='["images/fabrics/acetate-print-emboss/01.jpg", "images/fabrics/acetate-print-emboss/02.jpg", "images/fabrics/acetate-print-emboss/03.jpg", "images/fabrics/acetate-print-emboss/04.jpg"]'>
@@ -343,12 +383,12 @@
         </div>
     </footer>
 
-    <div id="modal" class="modal">
-        <span class="close">&times;</span>
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="caption">
+        <button type="button" class="close" aria-label="关闭">&times;</button>
         <div class="modal-figure">
-            <span class="modal-prev" id="modal-prev">&#8249;</span>
+            <button type="button" class="modal-prev" id="modal-prev" aria-label="上一张">&#8249;</button>
             <img class="modal-content" id="modal-img" alt="">
-            <span class="modal-next" id="modal-next">&#8250;</span>
+            <button type="button" class="modal-next" id="modal-next" aria-label="下一张">&#8250;</button>
         </div>
         <div id="modal-count"></div>
         <div id="caption"></div>
@@ -358,6 +398,6 @@
 
     <button id="back-to-top" aria-label="回到顶部">↑</button>
 
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>
